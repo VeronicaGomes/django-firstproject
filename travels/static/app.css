@@ -1,0 +1,82 @@
+body{
+background: url('images/flights.jpg');
+background-size: cover;
+background-position: center;
+font-family:  sans-serif;
+}
+
+html{
+	height: 100%;
+}
+
+
+.wrap{
+	max-width: 350px;
+	border-radius: 20px;
+	margin: auto;
+	background: rgba(0,0,0,0.8);
+	box-sizing: border-box;
+	padding: 40px;
+	color: #fff;
+
+}
+
+h2{
+	text-align: center;
+}
+
+input[type=text], input[type=password]{
+	width: 100%;
+	box-sizing: border-box;
+	padding: 12px 5px;
+	margin-top: 30px;
+	background: rgba(0,0,0,0.10);
+	outline: none;
+	border: none;
+	border-bottom: 1px solid #fff;
+	color: #fff;
+	border-radius: 5px;
+    margin: 5px;
+	font-size: 700;
+	font-weight: bold;
+
+}
+
+.sign_up_btn{
+	width: 100%;
+	box-sizing: border-box;
+	padding: 10px 0;
+	margin-top: 30px;
+	outline: none;
+	border: none;
+	background: #C14242;
+	border-radius: 20px;
+	font-size: 20px;
+	color: #fff;
+}
+
+.sign_up_btn:hover{
+	cursor: pointer;
+    background: #ffc107;
+    color: #000;
+}
+
+.wrap a{
+    text-decoration: none;
+    
+    line-height: 20px;
+    color: darkgrey;
+}
+
+.wrap a h{
+	font-size: 8px;
+}
+
+.wrap a:hover
+{
+    color: #ffc107;
+}
+.wrap a:hover
+{
+    color: #ffc107;
+}

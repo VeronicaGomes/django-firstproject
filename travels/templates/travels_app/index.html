@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+{% load static %}
+{% static "images" as baseUrl %}
+<html>
+<head>
+    <meta charset='utf-8'>
+
+
+    <title>Travels</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700" rel="stylesheet">
+
+    <link rel='stylesheet' type='text/css' media='screen' href="{% static 'css/index.css'  %}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+
+    <link rel="stylesheet" href="{% static 'flaticon/font/flaticon.css' %}">
+
+    <script src="https://kit.fontawesome.com/2b52047485.js" crossorigin="anonymous"></script>
+      
+</head>
+
+<body>
+   
+
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top  navbar-trans" id="mainNav">
+      <div class="container">
+          <a class="navbar-brand" href="{% url 'index' %}"><i class="fas fa-umbrella-beach mr-2"></i>Travel</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" id="icon-color">
+              <span class="navbar-toggler-icon" id=toggle-icon-color></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav mr-auto"> <!--mr-auto is margin right auto, which moves it to the left-->
+                  <li class="nav-item active">
+                      <a class="nav-link" href="{% url 'travels_app:hotel' %}">Hotel<span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="#">About</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
+                  </li>
+              </ul>
+              <ul class="navbar-nav"> <!--this automatically moves it to the right unless u type mr-auto-->
+
+                {% if user.is_authenticated %}
+
+                  <li class="nav-item">
+                      <a class="nav-link" href="#"><Strong>Welcome {{ user.first_name}}</Strong></a>
+                  </li>
+
+                  <!--<li>Welcome {{ user.first_name}}</li>-->
+                  <li class="nav-item">
+                      <a class="nav-link" href="accounts/logout"><Strong>Logout</Strong><i class="fas fa-user ml-2"></i></a>
+                  </li>
+                
+                {% else %}
+
+                  <li class="nav-item">
+                      <a class="nav-link" href="accounts/register"><Strong>Sign in<i class="fas fa-user-plus ml-2"></i></Strong></a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="accounts/login"><Strong>Login</Strong><i class="fas fa-user ml-2"></i></a>
+                  </li>
+
+                {% endif %} 
+
+                  <li class="nav-item">
+                    <div class="container">
+                    <a href="{% url 'travels_app:airplanetickets' %}"><button>Book Tickets</button></a>
+                    </div>
+                  </li>
+              </ul>
+          </div>
+       </nav>
+ 
+       <div class="container-fluid" id="front">
+        <div class="row">
+          <img class="d-block w-100" src="{% static 'images/Im4.jpg' %}"> 
+        </div>
+      </div>  
+
+
+
+<!---Card Slider-->
+
+
+  <div class="container" id="firstslider">
+      <div class="slider owl-carousel">
+
+    
+       {% for dest in dests %}
+       
+        <div class="col-md-12 mt-5">
+          <div class="card shadow">
+            <div class="inner">
+              <div class="img"> 
+                <img src="{{dest.img.url}}" class="card-img-top d-block w-100 img-fluid p-0 image-resize" alt="..."  >
+              </div>
+            </div>
+
+            <div class="card-body text p-3">
+              <div class="d-flex">
+                <div class="one">
+                  <h3><a  href="#">{{ dest.city }}</a></h3>
+                  <h5 class="price">${{ dest.price }}</h5>
+                </div>
+              </div>
+              <div class="bottom-area d-flex">
+                <p class="card-text ">Some quick example text to build on the title</p></div>
+                <hr>
+                <p class="bottom-area d-flex">
+                  <span><i class="icon-map-o"></i> {{ dest.city}}, {{dest1.country }}</span> 
+                  <span class="ml-auto"><a href="#" class="btn btn-outline-danger">Discover</a></span>
+                </p>
+              </div>
+
+            </div>
+          </div>
+
+          {% endfor %}
+      </div> 
+    </div> 
+
+
+    <div class="container">
+      <div class="slider owl-carousel">
+
+        {% for dest in dests %}
+       
+        <div class="col-md-12 mt-5">
+          <div class="card shadow">
+            <div class="inner">
+              <div class="img"> 
+                <img src="{{dest.img.url}}" class="card-img-top d-block w-100 img-fluid p-0 image-resize" alt="..."  >
+              </div>
+            </div>
+
+            <div class="card-body text p-3">
+              <div class="d-flex">
+                <div class="one">
+                  <h3><a  href="#">{{ dest.city }}</a></h3>
+                  <h5 class="price">${{ dest.price }}</h5>
+                </div>
+              </div>
+              <div class="bottom-area d-flex">
+                <p class="card-text ">Some quick example text to build on the title</p></div>
+                <hr>
+                <p class="bottom-area d-flex">
+                  <span><i class="icon-map-o"></i> {{ dest.city}}, {{dest1.country }}</span> 
+                  <span class="ml-auto"><a href="#" class="btn btn-outline-danger">Discover</a></span>
+                </p>
+              </div>
+
+            </div>
+          </div>
+
+          {% endfor %}
+
+   
+
+        </div>
+      </div>
+
+     
+
+      </div> 
+    </div>
+
+
+    <div class="colorlib-services">
+      <div class="container">
+        <div class="row no-gutter">
+          <div class="col-md-3 text-center ">
+            <div class="services">
+              <span class="icon">
+                <i class="flaticon-around"></i>
+              </span>
+              <h3>Amazing Travel</h3>
+              <p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies</p>
+            </div>
+          </div>
+
+          <div class="col-md-3 text-center ">
+            <div class="services">
+              <span class="icon">
+                <i class="flaticon-boat"></i>
+              </span>
+              <h3>Our Cruises</h3>
+              <p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies</p>
+            </div>
+          </div>
+
+          <div class="col-md-3 text-center ">
+            <div class="services">
+              <span class="icon">
+                <i class="flaticon-boat"></i>
+              </span>
+              <h3>Our Cruises</h3>
+              <p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies</p>        
+            </div>
+          </div>
+
+          <div class="col-md-3 text-center ">
+            <div class="services">
+              <span class="icon">
+                <i class="flaticon-postcard"></i>
+              </span>
+              <h3>Nice Support</h3>
+              <p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+
+    <!--card slider-->
+
+
+    <div class="container" id="secondslider">
+
+      <div class="row justify-content-center mb-1 pb-3">
+        <div class="col-md-7 text-center heading-section heading-section-white">
+          <h2 class="mb-4">Most Popular Destination</h2>
+            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in</p>
+        </div>
+      </div>
+
+      <div class="slider owl-carousel">
+
+        <div class="col-md-12"> 
+          <div class="card shadow">
+            <div class="inner">
+              <div class="img"> 
+                <img src="{% static 'images/S2.jpg' %}" class="img img-2 img-fluid d-flex justify-content-center align-items-center"  style="background-image: url(images/S2.jpg);">
+              </div>
+            </div>
+
+            <div class="card-body text p-3">
+              <div class="d-flex">
+                <div class="one">
+                  <h3><a  href="#">San Francisco</a></h3>
+                </div>
+              </div>
+              <p>An Object of discord, desire and fascination, the Eiffel Tower never fails to impress</p>
+              <hr>
+              <p class="bottom-area d-flex">
+                <span><i class="icon-map-o"></i> Paris, France</span> 
+                <span class="ml-auto"><a>Discover</a></span>
+              </p>
+            </div>
+        </div>
+      </div>
+
+       <div class="col-md-12"> 
+          <div class="card shadow">
+            <div class="inner">
+              <div class="img"> 
+                <img src="{% static 'images/S2.jpg' %}" class="img img-2 img-fluid d-flex justify-content-center align-items-center"  style="background-image: url(images/S2.jpg);">
+              </div>
+            </div>
+
+            <div class="card-body text p-3">
+              <div class="d-flex">
+                <div class="one">
+                  <h3><a  href="#">San Francisco</a></h3>
+                </div>
+              </div>
+              <p>An Object of discord, desire and fascination, the Eiffel Tower never fails to impress</p>
+              <hr>
+              <p class="bottom-area d-flex">
+                <span><i class="icon-map-o"></i> Paris, France</span> 
+                <span class="ml-auto"><a>Discover</a></span>
+              </p>
+            </div>
+        </div>
+      </div>
+
+       <div class="col-md-12"> 
+          <div class="card shadow">
+            <div class="inner">
+              <div class="img"> 
+                <img src="{% static 'images/S2.jpg' %}" class="img img-2 img-fluid d-flex justify-content-center align-items-center"  style="background-image: url(images/S2.jpg);">
+              </div>
+            </div>
+
+            <div class="card-body text p-3">
+              <div class="d-flex">
+                <div class="one">
+                  <h3><a  href="#">San Francisco</a></h3>
+                </div>
+              </div>
+              <p>An Object of discord, desire and fascination, the Eiffel Tower never fails to impress</p>
+              <hr>
+              <p class="bottom-area d-flex">
+                <span><i class="icon-map-o"></i> Paris, France</span> 
+                <span class="ml-auto"><a>Discover</a></span>
+              </p>
+            </div>
+        </div>
+      </div>
+
+       <div class="col-md-12"> 
+          <div class="card shadow">
+            <div class="inner">
+              <div class="img"> 
+                <img src="{% static 'images/S2.jpg' %}" class="img img-2 img-fluid d-flex justify-content-center align-items-center"  style="background-image: url(images/S2.jpg);">
+              </div>
+            </div>
+
+            <div class="card-body text p-3">
+              <div class="d-flex">
+                <div class="one">
+                  <h3><a  href="#">San Francisco</a></h3>
+                </div>
+              </div>
+              <p>An Object of discord, desire and fascination, the Eiffel Tower never fails to impress</p>
+              <hr>
+              <p class="bottom-area d-flex">
+                <span><i class="icon-map-o"></i> Paris, France</span> 
+                <span class="ml-auto"><a>Discover</a></span>
+              </p>
+            </div>
+        </div>
+      </div>
+
+       <div class="col-md-12"> 
+          <div class="card shadow">
+            <div class="inner">
+              <div class="img"> 
+                <img src="{% static 'images/S2.jpg' %}" class="img img-2 img-fluid d-flex justify-content-center align-items-center"  style="background-image: url(images/S2.jpg);">
+              </div>
+            </div>
+
+            <div class="card-body text p-3">
+              <div class="d-flex">
+                <div class="one">
+                  <h3><a  href="#">San Francisco</a></h3>
+                </div>
+              </div>
+              <p>An Object of discord, desire and fascination, the Eiffel Tower never fails to impress</p>
+              <hr>
+              <p class="bottom-area d-flex">
+                <span><i class="icon-map-o"></i> Paris, France</span> 
+                <span class="ml-auto"><a>Discover</a></span>
+              </p>
+            </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+  <!---footer-->
+  
+  <footer class="ftco-footer ftco-bg-dark ftco-section">
+    <div class="container">
+      <div class="row mb-5">
+
+        <div class="col-md">
+           <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">Adventure</h2>
+              <p>We only live once. So buckle up and enjoy! We're here to help. Contact us on these Social Media Platforms.</p>
+              <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-3">
+                <li><a href="#"><span><i class="fab fa-twitter"></i></span></a></li>
+                <li><a href="#"><span><i class="fab fa-facebook-f"></i></span></a></li>
+                <li><a href="#"><span><i class="fab fa-instagram"></i></span></a></li>
+              </ul>
+            </div>
+        </div>
+
+        <div class="col-md pl-20">
+          <div class="ftco-footer-widget block-23 pl-20 mb-4">
+            <h2 class="ftco-heading-2">Experience</h2>
+              <ul class="list-unstyled">
+                <li><span class="text">Beach</span></li>
+                <li><span class="text">Adventure</span></li>
+                <li><span class="text">Wildlife</span></li>
+                <li><span class="text">Honeymoon</span></li>
+                <li><span class="text">Nature</span></li>
+                <li><span class="text">Party</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">Have Questions?</h2>
+              <div class="block-23 mb-3">
+                <ul>
+                  <li class="icon"><a href="#"><span><i class="fas fa-map-marker-alt"></i></span><span class="text"> Dhaka, Bangladesh</span></a></li>
+                  <li class="icon"><a href="#"><span><i class="fas fa-phone-alt "></i></span><span class="text">  +88 017 81500 854</span></a></li>
+                  <li class="icon"><a href="#"><span><i class="fas fa-envelope "></i></span><span class="text">  veronica@gmail.com</span></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+      </div>
+
+      <div class="row">
+          <div class="col-md-12 text-center">
+            <p>
+              Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
+            </p>
+          </div>
+        </div>
+
+    </div>
+  </footer>
+
+    
+
+
+
+    
+
+
+   
+
+        
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+<script src="{% static 'js/bootstrap-datepicker.js' %}"></script>
+
+
+<script type="text/javascript" src="{% static 'js/main.js' %}"></script>   
+</body>
+</html>
