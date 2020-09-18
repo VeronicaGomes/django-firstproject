@@ -1,0 +1,10 @@
+travels/accounts/__pycache__/
+travels/travels/__pycache__/
+travels/travels_app/__pycache__/
+travels/accounts/migrations/__pycache__/
+travels/travels_app/migrations/__pycache__/
+travels_2/accounts/__pycache__/
+travels_2/accounts/migrations/__pycache__/
+travels_2/travels/__pycache__/
+travels_2/travels_app/__pycache__/
+travels_2/travels_app/migrations/__pycache__/
